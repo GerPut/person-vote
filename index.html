@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <title>Let's Vote</title>
+</head>
+
+<body style="background-color: #FAFAFA; display: flex; justify-content: center; align-items: center;">
+    <div id="root">React has not rendered yet</div>
+    <script type="text/babel">
+
+        class PersonVote extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    votes: 0
+                };
+                this.add = this.add.bind(this);
+                this.subtract = this.subtract.bind(this);
+            }
+            add() {
+                this.setState({
+                    votes: this.state.votes + 1
+                })
+            }
+            subtract() {
+                this.setState({
+                    votes: this.state.votes - 1
+                })
+            }
+            render() {
+                var personVoteStyle = {
+                    fontFamily: 'Roboto Mono',
+                    color: "#73D83C",
+                    display: "inline-block",
+                    textAlign: "center",
+                    margin: 20,
+                    height: 530,
+                    width: 400,
+                    padding: 20,
+                    borderRadius: 15,
+                    backgroundColor: "#333333",
+                    WebkitFilter: "drop-shadow(0px 0px 5px #000)",
+                    filter: "drop-shadow(0px 0px 5px #000)"
+                }
+                var picStyle = {
+                    height: 200,
+                    width: 200,
+                    marginTop: 20
+                }
+                return (
+                    <div style={personVoteStyle}>
+                        <img src={this.props.img} alt="person image" style={picStyle} />
+                        <h1>Vote Time</h1>
+                        <p>Vote For Him</p>
+                        <button onClick={this.add}>+1</button>
+                        <p>Do Not Vote For Him</p>
+                        <button onClick={this.subtract}>-1</button>
+                        <p>Total: {this.state.votes}</p>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <div>
+                <PersonVote img="images/p1.png" />
+                <PersonVote img="images/p2.png" />
+                <PersonVote img="images/p3.png" />
+            </div>,
+            document.getElementById("root")
+        );
+
+    </script>
+
+</body>
+
+</html>
